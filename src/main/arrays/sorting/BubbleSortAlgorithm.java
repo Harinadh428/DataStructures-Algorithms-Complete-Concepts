@@ -14,6 +14,7 @@ public class BubbleSortAlgorithm {
     }
 
     private static void bubbleSort(int[] arr) {
+
         if (arr.length < 2) {
             return;
         }
