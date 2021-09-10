@@ -18,7 +18,7 @@ public class SpiralTraversal {
 
         int max = arr[0].length * 4;
         int count = 0;
-
+        System.out.println("Spiral Traversal");
         while (count < max) {
             //left wall
             for (int i = minRow, j = minColumn; i < maxRow; i++) {
