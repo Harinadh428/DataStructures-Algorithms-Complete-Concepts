@@ -32,7 +32,7 @@ public class SpiralTraversal {
             for (int i = minColumn, j = maxRow - 1; i <= maxColumn; i++) {
                 System.out.print(arr[j][i] + " ");
                 count++;
-            }s
+            }
             maxRow--;
 
             //right wall
@@ -43,7 +43,7 @@ public class SpiralTraversal {
             }
             maxColumn--;
 
-            //right wall
+            //top wall
             for (int i = maxColumn, j = minRow; i >= minColumn; i--) {
                 System.out.print(arr[j][i] + " ");
                 count++;
