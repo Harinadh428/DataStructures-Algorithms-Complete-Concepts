@@ -19,6 +19,7 @@ public class WaveTraversal {
                 }
             }
         }
+        System.out.println();
     }
 }
 
