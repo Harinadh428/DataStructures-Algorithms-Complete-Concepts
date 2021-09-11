@@ -14,6 +14,7 @@ public class MatrixShellRotating {
                 {51, 52, 53, 54, 55, 56},
                 {61, 62, 63, 64, 65, 66}
         };
+        System.out.println();
 
         int s = 3;
         int r = 3;
