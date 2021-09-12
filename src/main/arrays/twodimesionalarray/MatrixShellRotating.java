@@ -14,10 +14,11 @@ public class MatrixShellRotating {
                 {51, 52, 53, 54, 55, 56},
                 {61, 62, 63, 64, 65, 66}
         };
+
         System.out.println();
 
-        int s = 3;
-        int r = 3;
+        int s = 1;
+        int r = 5;
         rotateShell(arr, s, r);
         display(arr);
     }
@@ -33,96 +34,97 @@ public class MatrixShellRotating {
     }
 
     private static void rotateShell(int[][] arr, int s, int r) {
-        int[] oneD = fillOneDFromShell(arr, s);
-        rotateOneD(oneD, r);
-        fillShellFromOneD(arr, s, oneD);
+        int[] oneDArray = fillOneDArrayFromShell(arr, s);
+        rotateOneDArray(oneDArray, r);
+        fillShellFromOneDArray(arr, s, oneDArray);
     }
 
-    private static void fillShellFromOneD(int[][] arr, int s, int[] oneD) {
+    private static void fillShellFromOneDArray(int[][] arr, int s, int[] oneDArray) {
 
         int minRow = s - 1;
-        int minColumn = s - 1;
+        int minCol = s - 1;
         int maxRow = arr.length - s;
-        int maxColumn = arr[0].length - s;
-
+        int maxCol = arr[0].length - s;
         int index = 0;
 
-        //lw
-        for (int i = minRow, j = minColumn; i <= maxRow; i++) {
-            arr[i][j] = oneD[index];
+        //left wall
+        for (int i = minRow, j = minCol; i <= maxRow; i++) {
+            arr[i][j] = oneDArray[index];
             index++;
         }
-        //bw
-        for (int i = maxRow, j = minColumn + 1; j <= maxColumn; j++) {
-            arr[i][j] = oneD[index];
+        //bottom wall
+        for (int i = maxRow, j = minCol + 1; j <= maxCol; j++) {
+            arr[i][j] = oneDArray[index];
             index++;
         }
-        //lw
-        for (int i = maxRow - 1, j = maxColumn; i >= minRow; i--) {
-            arr[i][j] = oneD[index];
+        //right wall
+        for (int i = maxRow - 1, j = maxCol; i >= minRow; i--) {
+            arr[i][j] = oneDArray[index];
             index++;
         }
-        //tw
+        //top wall
 
-        for (int i = minRow, j = maxColumn - 1; j >= minColumn + 1; j--) {
-            arr[i][j] = oneD[index];
+        for (int i = minRow, j = maxCol - 1; j >= minCol + 1; j--) {
+            arr[i][j] = oneDArray[index];
             index++;
         }
+
     }
 
-    private static void rotateOneD(int[] oneD, int r) {
-        r = r % oneD.length;
-
-        while (r < 0) {
-            r = r + oneD.length;
-        }
-        reverse(oneD, 0, oneD.length - r - 1);
-        reverse(oneD, oneD.length - r, oneD.length - 1);
-        reverse(oneD, 0, oneD.length - 1);
+    private static void rotateOneDArray(int[] oneDArray, int r) {
+        int startIndex = 0;
+        int endIndex = oneDArray.length - 1;
+        //reverse part1
+        reverse(oneDArray, startIndex, oneDArray.length - r - 1);
+        //reverse part2
+        reverse(oneDArray, oneDArray.length - r, oneDArray.length-1);
+        //reverse whole array
+        reverse(oneDArray, startIndex, oneDArray.length - 1);
     }
 
-    private static void reverse(int[] oneD, int startIndex, int endIndex) {
-
+    private static void reverse(int[] oneDArray, int startIndex, int endIndex) {
         while (startIndex < endIndex) {
-            int temp = oneD[startIndex];
-            oneD[startIndex] = oneD[endIndex];
-            oneD[endIndex] = temp;
+            int temp = oneDArray[startIndex];
+            oneDArray[startIndex] = oneDArray[endIndex];
+            oneDArray[endIndex] = temp;
             startIndex++;
             endIndex--;
         }
     }
 
-    private static int[] fillOneDFromShell(int[][] arr, int s) {
-        int minRow = s - 1;
-        int minColumn = s - 1;
-        int maxRow = arr.length - s;
-        int maxColumn = arr[0].length - s;
-        int size = 2 * (maxRow - minRow + maxColumn - minColumn);
+    private static int[] fillOneDArrayFromShell(int[][] arr, int s) {
 
-        int[] oneD = new int[size];
+        int minRow = s - 1;
+        int minCol = s - 1;
+        int maxRow = arr.length - s;
+        int maxCol = arr[0].length - s;
+        int oneDArraySize = 2 * (maxRow - minRow + maxCol - minCol);
+
+        int[] oneDArray = new int[oneDArraySize];
         int index = 0;
 
-        //rw
-        for (int i = minRow, j = minColumn; i < maxRow; i++) {
-            oneD[index] = arr[i][j];
+        //left wall
+        for (int i = minRow, j = minCol; i <= maxRow; i++) {
+            oneDArray[index] = arr[i][j];
             index++;
         }
-        //bw
-        for (int i = maxRow, j = minColumn + 1; j <= maxColumn; j++) {
-            oneD[index] = arr[i][j];
+        //bottom wall
+        for (int i = maxRow, j = minCol + 1; j <= maxCol; j++) {
+            oneDArray[index] = arr[i][j];
             index++;
         }
-        //lw
-        for (int i = maxRow - 1, j = maxColumn; i >= minRow; i--) {
-            oneD[index] = arr[i][j];
+        //right wall
+        for (int i = maxRow - 1, j = maxCol; i >= minRow; i--) {
+            oneDArray[index] = arr[i][j];
             index++;
         }
-        //tw
+        //top wall
 
-        for (int i = minRow, j = maxColumn - 1; j >= minColumn + 1; j--) {
-            oneD[index] = arr[i][j];
+        for (int i = minRow, j = maxCol - 1; j >= minCol + 1; j--) {
+            oneDArray[index] = arr[i][j];
             index++;
         }
-        return oneD;
+        return oneDArray;
     }
+
 }
