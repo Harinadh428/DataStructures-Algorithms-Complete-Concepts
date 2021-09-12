@@ -72,12 +72,16 @@ public class MatrixShellRotating {
     }
 
     private static void rotateOneDArray(int[] oneDArray, int r) {
+        r = r % oneDArray.length;
+        if (r < 0) {
+            r = r + oneDArray.length;
+        }
         int startIndex = 0;
         int endIndex = oneDArray.length - 1;
         //reverse part1
         reverse(oneDArray, startIndex, oneDArray.length - r - 1);
         //reverse part2
-        reverse(oneDArray, oneDArray.length - r, oneDArray.length-1);
+        reverse(oneDArray, oneDArray.length - r, oneDArray.length - 1);
         //reverse whole array
         reverse(oneDArray, startIndex, oneDArray.length - 1);
     }
