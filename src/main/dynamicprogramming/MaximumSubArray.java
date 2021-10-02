@@ -8,6 +8,8 @@ public class MaximumSubArray {
     public static void main(String[] args) {
         int[] arr = {1, 2, 5, 10, -1};
         //kadane's algorithm
+        int startIndex = 0;
+        int endIndex = 0;
         int currentSum = arr[0];
         int overAllSum = arr[0];
 
