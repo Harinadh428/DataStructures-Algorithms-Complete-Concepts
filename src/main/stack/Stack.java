@@ -13,7 +13,7 @@ public class Stack {
     }
 
     public void push(int data) {
-        if (stack.length-1 == top) {
+        if (stack.length - 1 == top) {
             System.out.println("Stack is full");
         } else {
             stack[++top] = data;
@@ -38,7 +38,7 @@ public class Stack {
     }
 
     public void isFull() {
-        if (top == stack.length-1) {
+        if (top == stack.length - 1) {
             System.out.println("Stack is full");
         } else {
             System.out.println("Stack is not full");
@@ -53,6 +53,16 @@ public class Stack {
         return stack[top];
     }
 
+    public void printStackTrace() {
+        if (top == -1) {
+            System.out.println("Stack is empty");
+        } else {
+            for (int i = 0; i <= top; i++) {
+                System.out.print(stack[i] + " ");
+            }
+        }
+    }
+
 
     public static void main(String[] args) {
         Stack stack = new Stack(5);
@@ -63,10 +73,11 @@ public class Stack {
         stack.push(50);
         stack.isEmpty();
         stack.isFull();
-        stack.push(60);
+    //    stack.push(60);
         System.out.println(stack.pop());
         System.out.println(stack.pop());
         System.out.println(stack.peek());
         System.out.println(stack.pop());
+        stack.printStackTrace();
     }
 }
