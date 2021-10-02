@@ -5,7 +5,7 @@ package main.cs.linkedlist;
  */
 public class LinkedList {
 
-    private Node root;
+    private Node root ;
 
     public void add(int e) {
         if (root == null) {
