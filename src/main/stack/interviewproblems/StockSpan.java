@@ -8,7 +8,7 @@ import java.util.Stack;
 public class StockSpan {
     //Algorithm works based on pop answer and push
     public static void main(String[] args) {
-        int[] arr = {1, 3, 8, 4, 7};
+        int[] arr = {1, 3, 8, 4, 7, 9};
         int[] stockSPan = stackSpan(arr);
 
         for (int x : stockSPan) {
