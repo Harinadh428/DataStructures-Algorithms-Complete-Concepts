@@ -10,7 +10,7 @@ public class InfixEvaluationProblem {
 
     public static void main(String[] args) {
 
-        String str = "2+1+(3*2/2)+9";
+        String str = "2+(5-3*6/2)";
         Stack<Integer> operands = new Stack<>();
         Stack<Character> operators = new Stack<>();
 
@@ -64,7 +64,7 @@ public class InfixEvaluationProblem {
         } else if (operator == '*') {
             return val2 * val1;
         } else {
-            return val1 / val2;
+            return val2 / val1;
         }
     }
 
