@@ -26,7 +26,8 @@ public class InfixEvaluationProblem {
                     int val1 = operands.pop();
                     int val2 = operands.pop();
 
-                    int result = operation(val1, val2, operator);
+                    int result = operation(val1, val2, operator)
+                            ;
                     operands.push(result);
                 }
                 operators.pop();
