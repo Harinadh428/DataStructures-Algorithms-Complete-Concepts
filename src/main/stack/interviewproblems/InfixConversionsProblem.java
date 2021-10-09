@@ -8,7 +8,7 @@ import java.util.Stack;
 public class InfixConversionsProblem {
 
     public static void main(String[] args) {
-        String str = "2+3+(2-3*6/2)+4";
+        String str = "2+6*4/8-3";
 
         Stack<String> preFix = new Stack<>();
         Stack<String> postFix = new Stack<>();
@@ -22,6 +22,7 @@ public class InfixConversionsProblem {
                 while (operators.size() > 0 && operators.peek() != '(') {
                     handleStackCalculation(operators, preFix, postFix);
                 }
+                operators.pop();
             } else if (ch >= '0' && ch <= '9' ||
                     ch >= 'a' && ch <= 'z' ||
                     ch >= 'A' && ch <= 'Z') {
@@ -55,7 +56,6 @@ public class InfixConversionsProblem {
     }
 
     public static int precedence(char operator) {
-
         if (operator == '+' || operator == '-') {
             return 1;
         } else if (operator == '*' || operator == '/') {
