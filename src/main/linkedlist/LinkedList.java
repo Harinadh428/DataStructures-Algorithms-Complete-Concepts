@@ -49,11 +49,11 @@ public class LinkedList {
     }
 
     public void removeFirst() {
+        
         if (size() == 0) {
             System.out.println("linked list is empty");
-        } else if (head.next == null) {
-            head = null;
-            tail = null;
+        } else if (size == 1) {
+            head = tail = null;
             size--;
         } else {
             head = head.next;
