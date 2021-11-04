@@ -6,149 +6,64 @@ package main.linkedlist;
 public class LinkedList {
     private Node head;
     private Node tail;
-    private int size = 0;
+    private int size;
 
-    public void addLast(int element) {
-        Node node = new Node(element, null);
-        if (size == 0) {
+    public void addLast(int data) {
+
+        Node node = new Node(data, null);
+        if (head == null) {
             head = node;
             tail = node;
-            size++;
         } else {
-
-            Node currentNode = tail;
-
-            while (currentNode.next != null) {
-                currentNode = currentNode.next;
-            }
-            currentNode.next = node;
-            size++;
+            System.out.println("Add last method tail reference :" + tail.hashCode());
+            tail.next = node;
+            tail = node;
         }
+        size++;
     }
 
-    public void displayLinkedList() {
-        Node current = tail;
-        while (current.next != null) {
-            System.out.print(current.data + " ");
-            current = current.next;
+    public void display() {
+        if (head == null) {
+            System.out.println("linked list is empty");
+            return;
         }
+        Node temp = head;
 
-        System.out.print(current.data + " ");
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
         System.out.println();
     }
 
-    public boolean deleteFirst() {
-        if (size == 1) {
+    public int size() {
+        System.out.println(size);
+        return size;
+    }
+
+    public void printReference() {
+        if (head != null && tail != null) {
+            System.out.println("head +" + head.hashCode());
+            System.out.println("tail +" + tail.hashCode());
+        }
+    }
+
+    public void removeFirst() {
+        if (size() == 0) {
+            System.out.println("linked list is empty");
+        } else if (head.next == null) {
             head = null;
             tail = null;
-            return true;
+            size--;
         } else {
-            head = new Node(tail.next.data, null);
-            Node current = tail.next;
-            tail = current;
+            head = head.next;
+            size--;
         }
-        return false;
-    }
-
-    public void addFirst(int element) {
-        Node node = new Node(element, null);
-
-        if (size == 0) {
-            head = node;
-            tail = node;
-            size++;
-        }
-        node.next = tail;
-        tail = node;
-        head = new Node(tail.data, null);
-        size++;
-
-    }
-
-    public void deleteLast() {
-        Node current = tail;
-        Node previous = null;
-
-    }
-
-    private int getFirst() {
-        if (size == 0) {
-            System.out.println("Linked list is empty");
-            return -1;
-        }
-        return head.getData();
-    }
-
-    private int getLast() {
-        if (size == 0) {
-            System.out.println("Linked list is empty");
-            return -1;
-        }
-
-        Node current = tail;
-        while (current.next != null) {
-            current = current.next;
-            if (current.next == null) {
-                return current.data;
-            }
-        }
-        return -1;
-    }
-
-    private int getAt(int index) {
-        if (size == 0) {
-            System.out.println("Linked list is empty");
-            return -1;
-        } else if (index < 0 || index >= size) {
-            System.out.println("Invalid index");
-        } else {
-            Node current = tail;
-            int i = 0;
-            while (i <= size) {
-                current = current.next;
-            }
-            return current.data;
-        }
-        return -1;
-    }
-
-    public static void main(String[] args) {
-        LinkedList linkedList = new LinkedList();
-
-        linkedList.addLast(10);
-        linkedList.addLast(20);
-        linkedList.addLast(30);
-        linkedList.addLast(40);
-        linkedList.addLast(50);
-        linkedList.addLast(60);
-        linkedList.addLast(70);
-        linkedList.addLast(80);
-        linkedList.addLast(90);
-
-        linkedList.displayLinkedList();
-        linkedList.deleteFirst();
-        //  System.out.println();
-        linkedList.displayLinkedList();
-        // System.out.println();
-        linkedList.addFirst(100);
-        linkedList.displayLinkedList();
-        //System.out.println();
-        linkedList.deleteLast();
-        linkedList.displayLinkedList();
-        //System.out.println();
     }
 
     static class Node {
-        private int data;
-        private Node next;
-
-        @Override
-        public String toString() {
-            return "Node{" +
-                    "data=" + data +
-                    ", next=" + next +
-                    '}';
-        }
+        int data;
+        Node next;
 
         public Node(int data, Node next) {
             this.data = data;
@@ -170,5 +85,29 @@ public class LinkedList {
         public void setNext(Node next) {
             this.next = next;
         }
+    }
+
+    public static void main(String[] args) {
+
+        LinkedList linkedList = new LinkedList();
+        // linkedList.printReference();
+        linkedList.addLast(10);
+        // linkedList.printReference();
+        linkedList.addLast(20);
+        //linkedList.printReference();
+        linkedList.addLast(30);
+        //linkedList.printReference();
+        linkedList.addLast(40);
+        linkedList.display();
+        linkedList.printReference();
+        linkedList.size();
+        linkedList.removeFirst();
+        linkedList.display();
+        linkedList.size();
+        linkedList.removeFirst();
+        linkedList.removeFirst();
+        linkedList.removeFirst();
+        linkedList.display();
+        linkedList.size();
     }
 }
