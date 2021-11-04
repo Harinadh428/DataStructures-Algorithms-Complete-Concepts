@@ -62,7 +62,7 @@ public class LinkedList {
     }
 
     public int getValueAt(int index) {
-        if (index > size) {
+        if (index < 0 || index >= size) {
             System.out.println("index is out of size");
             return -1;
         }
@@ -81,6 +81,62 @@ public class LinkedList {
             }
         }
         return -1;
+    }
+
+    public void addFirst(int data) {
+        Node node = new Node(data, null);
+        if (size == 0) {
+            head = node;
+            tail = node;
+        } else {
+            node.next = head;
+            head = node;
+        }
+        size++;
+    }
+
+    public void addAt(int index, int data) {
+        Node newNode = new Node(data, null);
+        if (index > size || index < 0) {
+            System.out.println("invalid index");
+        } else if (head == null) {
+            head = newNode;
+            tail = newNode;
+            size++;
+        } else if (index == size) {
+            tail.next = newNode;
+            tail = newNode;
+            size++;
+        } else {
+            Node current = head;
+            for (int i = 0; i < index - 1; i++) {
+                current = current.next;
+            }
+            Node existingNode = current.next;
+            current.next = newNode;
+            newNode.next = existingNode;
+            size++;
+        }
+    }
+
+    public void removeLast() {
+
+        if (size == 0) {
+            System.out.println("linked list is empty");
+            return;
+        } else if (size == 1) {
+            head = tail = null;
+            size--;
+        } else {
+            Node temp = head;
+
+            while (temp.next.next != null) {
+                temp = temp.next;
+            }
+            temp.next = null;
+            tail = temp;
+            size--;
+        }
     }
 
     public int getFirst() {
@@ -131,5 +187,23 @@ public class LinkedList {
         linkedList.display();
         System.out.println(linkedList.getValueAt(1));
         linkedList.display();
+        linkedList.addFirst(50);
+        linkedList.display();
+        linkedList.size();
+        linkedList.addFirst(60);
+        linkedList.size();
+        linkedList.display();
+        linkedList.addAt(2, 100);
+        linkedList.display();
+        linkedList.size();
+        linkedList.removeLast();
+        linkedList.display();
+        linkedList.size();
+        linkedList.removeLast();
+        linkedList.display();
+        linkedList.size();
+        linkedList.addLast(300);
+        linkedList.display();
+        linkedList.size();
     }
 }
