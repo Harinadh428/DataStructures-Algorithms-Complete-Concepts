@@ -61,6 +61,46 @@ public class LinkedList {
         }
     }
 
+    public int getValueAt(int index) {
+        if (index > size) {
+            System.out.println("index is out of size");
+            return -1;
+        }
+        if (size == 0) {
+            System.out.println("linked list is empty");
+            return -1;
+        } else {
+            Node temp = head;
+            int id = 0;
+            while (temp.next != null) {
+                if (id == index) {
+                    return temp.data;
+                }
+                temp = temp.next;
+                id++;
+            }
+        }
+        return -1;
+    }
+
+    public int getFirst() {
+        if (size == 0) {
+            System.out.println("linked list is empty");
+            return -1;
+        } else {
+            return head.data;
+        }
+    }
+
+    public int getLast() {
+        if (size == 0) {
+            System.out.println("linked list is empty");
+            return -1;
+        } else {
+            return tail.data;
+        }
+    }
+
     static class Node {
         int data;
         Node next;
@@ -70,33 +110,14 @@ public class LinkedList {
             this.next = next;
         }
 
-        public int getData() {
-            return data;
-        }
-
-        public void setData(int data) {
-            this.data = data;
-        }
-
-        public Node getNext() {
-            return next;
-        }
-
-        public void setNext(Node next) {
-            this.next = next;
-        }
     }
 
     public static void main(String[] args) {
 
         LinkedList linkedList = new LinkedList();
-        // linkedList.printReference();
         linkedList.addLast(10);
-        // linkedList.printReference();
         linkedList.addLast(20);
-        //linkedList.printReference();
         linkedList.addLast(30);
-        //linkedList.printReference();
         linkedList.addLast(40);
         linkedList.display();
         linkedList.printReference();
@@ -104,10 +125,11 @@ public class LinkedList {
         linkedList.removeFirst();
         linkedList.display();
         linkedList.size();
-        linkedList.removeFirst();
-        linkedList.removeFirst();
-        linkedList.removeFirst();
         linkedList.display();
-        linkedList.size();
+        System.out.println(linkedList.getFirst());
+        System.out.println(linkedList.getLast());
+        linkedList.display();
+        System.out.println(linkedList.getValueAt(1));
+        linkedList.display();
     }
 }
